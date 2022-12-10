@@ -190,18 +190,14 @@ msleep = pd.merge(msleep, red_list, how='left', left_on='conservation', right_on
 # - 투명도는 멸종 위기가 높은 경우 0.7, 낮은 경우 0.5, 없는 경우 0.3으로 지정하세요.
 
 # In[21]:
+# plot a bar chart of awake by risk with appropriate transparency (0.7, 0.5, 0.3) for high, low, and non respectively using sns
 high_risk = msleep[msleep['risk'] == 'high']
 low_risk = msleep[msleep['risk'] == 'low']
 non_risk = msleep[msleep['risk'] == 'non']
 
-plt.figure(figsize=(10, 6))
-
-plt.bar(x=high_risk['name'], height=high_risk['awake'], alpha=0.7, width=0.6)
-plt.bar(x=low_risk['name'], height=low_risk['awake'], alpha=0.5, width=0.6)
-plt.bar(x=non_risk['name'], height=non_risk['awake'], alpha=0.3, width=0.6)
-
-plt.xticks(rotation=90)
+sns.barplot(x='risk', y='sleep_total', data=high_risk, alpha=0.7)
+sns.barplot(x='risk', y='sleep_total', data=low_risk, alpha=0.5)
+sns.barplot(x='risk', y='sleep_total', data=non_risk, alpha=0.3)
 plt.show()
-
 
 # In[22]:
